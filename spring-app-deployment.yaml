@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\kompose\kompose-windows-amd64.exe convert
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: spring-app
+  name: spring-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      io.kompose.service: spring-app
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\kompose\kompose-windows-amd64.exe convert
+        kompose.version: 1.35.0 (9532ceef3)
+      labels:
+        io.kompose.service: spring-app
+    spec:
+      containers:
+        - env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/devops_training_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+          image: shashwat0313/spring-app:latest
+          name: spring-app
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      restartPolicy: Always
