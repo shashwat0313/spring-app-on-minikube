@@ -12,7 +12,7 @@ public class DBConnection {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource(
-                "jdbc:postgresql://localhost:5432/devops_training_db",
+                "jdbc:postgresql://postgres:5432/devops_training_db",
                 "postgres",
                 "password"
         );
